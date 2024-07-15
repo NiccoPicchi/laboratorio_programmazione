@@ -96,3 +96,16 @@ void Notepad::deleteCollection(const std::string& collectionTitle) {
     else
         std::cout<<"Impossibile trovare la collezione!"<<std::endl;
 }
+
+void Notepad::subscribe(Observer *o) {
+    observers.push_back(o);
+}
+
+void Notepad::unsubscribe(Observer *o) {
+    observers.remove(o);
+}
+
+void Notepad::notify() {
+    for (auto element: observers)
+        element->update();
+}

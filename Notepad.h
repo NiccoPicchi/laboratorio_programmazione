@@ -11,10 +11,13 @@
 #include <memory>
 #include <list>
 #include "Note.h"
+#include "Subject.h"
+#include "Observer.h"
 
-class Notepad{
+class Notepad: public Subject{
 private:
     std::map<std::string, std::vector<Note*>> notepad;
+    std::list<Observer*> observers;
 
 public:
     void deleteCollection (const std::string& collectionTitle);
@@ -26,6 +29,9 @@ public:
     std::vector<int> getEmailNumber();
     int getCollectionNumber ();
     std::vector<std::string> getCollectionTitle();
+    void subscribe(Observer *o) override;
+    void unsubscribe(Observer *o) override;
+    void notify() override;
 };
 
 
