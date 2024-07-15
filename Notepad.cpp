@@ -30,6 +30,7 @@ void Notepad::removeNote(const std::string &collectionTitle, const std::string& 
         if ((*it)->getTitle() == noteTitle) {
             notepad[collectionTitle].erase(it);
             std::cout << "Nota eliminata con successo" << std::endl;
+            notify();
             break;
         }
         else
@@ -46,6 +47,7 @@ void Notepad::createNote(const std::string& collectionTitle) {
         std::cin>>fileName;
         notepad[collectionTitle].push_back(new Note(noteTitle, fileName));
         notepad[collectionTitle][notepad[collectionTitle].size()-1]->writeOnNote(fileName);
+        notify();
 
     }
     else
