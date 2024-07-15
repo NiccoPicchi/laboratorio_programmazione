@@ -7,4 +7,6 @@ add_executable(laboratorio_programmazione main.cpp
         Note.cpp
         Note.h
         Notepad.cpp
-        Notepad.h)
+        Notepad.h
+        Subject.h
+        Observer.h)
