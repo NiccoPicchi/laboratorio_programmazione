@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(laboratorio_programmazione main.cpp
         Note.cpp
-        Note.h)
+        Note.h
+        Notepad.cpp
+        Notepad.h)
