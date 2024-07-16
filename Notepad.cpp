@@ -41,10 +41,10 @@ void Notepad::createNote(const std::string& collectionTitle) {
     if (notepad.find(collectionTitle) != notepad.end()){
         std::string noteTitle;
         std::cout<<"Inserire il titolo della nota"<<std::endl;
-        std::cin>>noteTitle;
+        std::getline(std::cin, noteTitle);
         std::string fileName;
         std::cout<<"Inserire il nome del file"<<std::endl;
-        std::cin>>fileName;
+        std::getline(std::cin, fileName);
         notepad[collectionTitle].push_back(new Note(noteTitle, fileName));
         notepad[collectionTitle][notepad[collectionTitle].size()-1]->writeOnNote(fileName);
         notify();
