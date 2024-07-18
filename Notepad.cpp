@@ -93,7 +93,7 @@ void Notepad::deleteCollection(const std::string& collectionTitle) {
     if (it != notepad.end()){
         it->second.clear();
         notepad.erase(it);
-        std::cout<<"La collezione "<< collectionTitle<< "è stata cancellata con successo!"<<std::endl;
+        std::cout<<"La collezione "<< collectionTitle<< " è stata cancellata con successo!"<<std::endl;
     }
     else
         std::cout<<"Impossibile trovare la collezione!"<<std::endl;
