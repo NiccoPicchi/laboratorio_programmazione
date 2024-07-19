@@ -35,10 +35,10 @@ void Notepad::removeNote(const std::string &collectionTitle, const std::string& 
                 break;
             }
             else
-                std::cout<<"Nota bloccata! Impossibile modificarla"<<std::endl;
+                std::cout<<"Nota bloccata! Impossibile eliminarla"<<std::endl;
         }
         else
-            std::cout << "Impossibile eliminatre la nota! Nota non trovata!" << std::endl;
+            std::cout << "Impossibile eliminare la nota! Nota non trovata!" << std::endl;
 }
 
 void Notepad::createNote(const std::string& collectionTitle) {
@@ -141,3 +141,32 @@ void Notepad::unlockNote(const std::string &collectionTitle, const std::string &
         }
     }
 }
+
+void Notepad::putInImportant(const std::string &collectionTitle, const std::string &noteTitle) {
+    bool found = false;
+    for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
+        if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
+            (notepad[collectionTitle])[i]->setImportant(true);
+            std::cout<<"Hai impostato la nota come importante!" <<std::endl;
+            notepad["Note importanti"].push_back((notepad[collectionTitle])[i]);
+            found = true;
+        }
+    }
+}
+
+void Notepad::removeFromImportant(const std::string &collectionTitle, const std::string &noteTitle) {
+    bool found = false;
+    for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
+        if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
+            (notepad[collectionTitle])[i]->setImportant(false);
+            std::cout<<"Hai impostato la nota come non importante!" <<std::endl;
+            for (auto it = notepad["Note importanti"].begin(); it != notepad["Note importanti"].end(); it++)
+                if ((*it)->getTitle() == noteTitle) {
+                    notepad["Note importanti"].erase(it);
+                    break;
+                }
+            found = true;
+        }
+    }
+}
+

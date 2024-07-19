@@ -31,6 +31,8 @@ public:
 
     void setTitle(const std::string &title);
 
+    bool isImportant() const;
+
     const std::string &getTitle() const;
 
     void setImportant(bool important);

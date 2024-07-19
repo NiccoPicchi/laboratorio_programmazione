@@ -13,10 +13,11 @@ string setName () {
 
 int main() {
     Notepad notepad;
+    notepad.setCollectionTitle("Note importanti");
     NotepadObserver observer(&notepad);
-    int numOptions = 9;
+    int numOptions = 11;
     cout<<"Benvenuto nel blocco note!"<<endl;
-    cout<<"Cosa desideri fare:"<<"\n"<< "1)Creare una nuova collezione      2)Creare una nuova nota       3)Modificare una nota       4)Leggere una nota      5)Eliminare una nota      6)Eliminare una collezione      7)Bloccare una nota     8)Sbloccare una nota        9)Uscire"<<endl;
+    cout<<"Cosa desideri fare:"<<"\n"<< "1)Creare una nuova collezione      2)Creare una nuova nota       3)Modificare una nota       4)Leggere una nota      5)Eliminare una nota      6)Eliminare una collezione      7)Bloccare una nota     8)Sbloccare una nota        9)Imposta una nota come importante      10)Rimuovi una nota da importanti       11)Uscire "<<endl;
     int option=0;
     while (option != numOptions) {
         cout<< "Digitare il numero corrispondente all'azione desiderata" <<endl;
@@ -88,9 +89,25 @@ int main() {
             string noteTitle = setName();
             notepad.unlockNote(collectionTitle, noteTitle);
         }
+        if (option == 9){
+            cin.ignore();
+            cout<<"Inserire il nome della collezione in cui è presente la nota da impostare come importante"<<endl;
+            string collectionTitle = setName();
+            cout<<"Inserire il titolo della nota da impostare come importante"<<endl;
+            string noteTitle = setName();
+            notepad.putInImportant(collectionTitle, noteTitle);
+        }
+        if (option == 10){
+            cin.ignore();
+            cout<<"Inserire il nome della collezione in cui è presente la nota da rimuovere da importante"<<endl;
+            string collectionTitle = setName();
+            cout<<"Inserire il titolo della nota da rimuovere da importante"<<endl;
+            string noteTitle = setName();
+            notepad.removeFromImportant(collectionTitle, noteTitle);
+        }
     }
 
-    if (option == 9)
+    if (option == 11)
         return 0;
 
 }

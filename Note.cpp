@@ -135,3 +135,7 @@ const std::string &Note::getFileName() const {
 bool Note::isBlocked() const {
     return blocked;
 }
+
+bool Note::isImportant() const {
+    return important;
+}
