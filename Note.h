@@ -25,6 +25,8 @@ public:
 
     void setBlocked(bool blocked);
 
+    bool isBlocked() const;
+
     const std::string &getFileName() const;
 
     void setTitle(const std::string &title);

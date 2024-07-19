@@ -28,10 +28,14 @@ void Notepad::showNote(const std::string &collectionTitle, const std::string& no
 void Notepad::removeNote(const std::string &collectionTitle, const std::string& noteTitle) {
     for (auto it = notepad[collectionTitle].begin(); it != notepad[collectionTitle].end(); it++)
         if ((*it)->getTitle() == noteTitle) {
-            notepad[collectionTitle].erase(it);
-            std::cout << "Nota eliminata con successo" << std::endl;
-            notify();
-            break;
+            if (!(*it)->isBlocked()) {
+                notepad[collectionTitle].erase(it);
+                std::cout << "Nota eliminata con successo" << std::endl;
+                notify();
+                break;
+            }
+            else
+                std::cout<<"Nota bloccata! Impossibile modificarla"<<std::endl;
         }
         else
             std::cout << "Impossibile eliminatre la nota! Nota non trovata!" << std::endl;
@@ -58,10 +62,14 @@ void Notepad::modifyNote(const std::string& collectionTitle, const std::string& 
     bool found = false;
     for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
         if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
-            std::cout<<"Modificando la nota dalla collezione:"<< collectionTitle <<std::endl;
-            (notepad[collectionTitle])[i]->modifyNote((notepad[collectionTitle])[i]->getFileName());
-            found = true;
-            std::cout<<"Nota modificata con successo!"<<std::endl;
+            if (notepad[collectionTitle][i]->isBlocked()== false){
+                std::cout<<"Modificando la nota dalla collezione:"<< collectionTitle <<std::endl;
+                (notepad[collectionTitle])[i]->modifyNote((notepad[collectionTitle])[i]->getFileName());
+                found = true;
+                std::cout<<"Nota modificata con successo!"<<std::endl;
+            }
+            else
+                std::cout<<"Nota bloccata! Impossibile modificarla"<<std::endl;
         }
     }
 

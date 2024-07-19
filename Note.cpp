@@ -131,3 +131,7 @@ Note::Note(const std::string &title, const std::string &fileName, bool blocked, 
 const std::string &Note::getFileName() const {
     return fileName;
 }
+
+bool Note::isBlocked() const {
+    return blocked;
+}
