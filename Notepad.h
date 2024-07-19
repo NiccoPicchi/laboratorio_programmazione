@@ -36,6 +36,7 @@ public:
     void subscribe(Observer *o) override;
     void unsubscribe(Observer *o) override;
     void notify() override;
+    int getEmailInACollection (const std::string& collectionTitle);
 };
 
 

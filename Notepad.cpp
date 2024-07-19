@@ -149,6 +149,7 @@ void Notepad::putInImportant(const std::string &collectionTitle, const std::stri
             (notepad[collectionTitle])[i]->setImportant(true);
             std::cout<<"Hai impostato la nota come importante!" <<std::endl;
             notepad["Note importanti"].push_back((notepad[collectionTitle])[i]);
+            notify();
             found = true;
         }
     }
@@ -165,8 +166,13 @@ void Notepad::removeFromImportant(const std::string &collectionTitle, const std:
                     notepad["Note importanti"].erase(it);
                     break;
                 }
+            notify();
             found = true;
         }
     }
+}
+
+int Notepad::getEmailInACollection(const std::string &collectionTitle) {
+    return notepad[collectionTitle].capacity();
 }
 

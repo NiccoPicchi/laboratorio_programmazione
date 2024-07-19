@@ -7,19 +7,13 @@ class GameCharacterSuite : public ::testing::Test {
 
 protected:
     virtual void SetUp() {
-        c = new GameCharacter(10);
-        c->setXPos(10);
-        c->setYPos(10);
-        c->setFighting(true);
+        Notepad notepad;
     }
 
 
     void TearDown() override {
-    delete c;
     }
 
-
-    GameCharacter* c = nullptr;  // XXX C++11 standard initialization
 };
 
 TEST_F(GameCharacterSuite, TestMove) {

@@ -4,17 +4,32 @@
 TEST(Notepad, createNote) {
     Notepad notepad;
     std::string collectionTitle = "note a caso";
+    notepad.setCollectionTitle(collectionTitle);
     notepad.createNote(collectionTitle);
-    ASSERT_EQ(notepad[collectionTitle][0], Note("titolo", "filename"));
+    ASSERT_EQ(notepad.getEmailInACollection(collectionTitle), 1);
 }
 
 
 
 
-TEST(GameCharacter, FightingDisabled){
-    GameCharacter test(5);
-    test.setFighting (true);
-    ASSERT_TRUE (test.isFighting());
-    test.move(2,3);
-    ASSERT_FALSE(test.isFighting());
+TEST(Notepad, removeNote){
+    Notepad notepad;
+    std::string collectionTitle = "note a caso";
+    notepad.setCollectionTitle(collectionTitle);
+    notepad.createNote(collectionTitle);
+    notepad.removeNote(collectionTitle, "titolo");
+    ASSERT_EQ(notepad.getEmailInACollection(collectionTitle), 0);
+}
+
+TEST(Notepad, setCollection){
+    Notepad notepad;
+    notepad.setCollectionTitle("collezione");
+    ASSERT_EQ(notepad.getCollectionNumber(), 1);
+}
+
+TEST(Notepad, removeCollection){
+    Notepad notepad;
+    notepad.setCollectionTitle("collezione");
+    notepad.deleteCollection("collezione");
+    ASSERT_EQ(notepad.getCollectionNumber(), 0);
 }
