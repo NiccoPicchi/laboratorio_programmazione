@@ -111,3 +111,25 @@ void Notepad::notify() {
     for (auto element: observers)
         element->update();
 }
+
+void Notepad::lockNote(const std::string &collectionTitle, const std::string &noteTitle) {
+    bool found = false;
+    for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
+        if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
+            (notepad[collectionTitle])[i]->setBlocked(true);
+            std::cout<<"Nota bloccata con successo! Ora è impossibile modificarla" <<std::endl;
+            found = true;
+        }
+    }
+}
+
+void Notepad::unlockNote(const std::string &collectionTitle, const std::string &noteTitle) {
+    bool found = false;
+    for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
+        if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
+            (notepad[collectionTitle])[i]->setBlocked(false);
+            std::cout<<"Nota sbloccata con successo! Ora è possibile modificarla" <<std::endl;
+            found = true;
+        }
+    }
+}

@@ -51,7 +51,7 @@ void Note::writeOnNote(const std::string& name) {
             std::cerr<<"Errore nell'apertura del file"<<std::endl;
         else{
             std::string input;
-            std::cout << "Inserisci una stringa di testo: "<<std::endl;
+            std::cout << "Inserisci il testo: "<<std::endl;
             std::getline(std::cin, input);
             text<< input<<std::endl;
             text.close();
@@ -72,10 +72,10 @@ void Note::setImportant(bool important) {
 void Note::modifyNote(const std::string &name) {
     if (!blocked){
         std::string target;
-        std::cout<<"Inserire la stringa da modificare"<<std::endl;
+        std::cout<<"Inserire la parte di testo da modificare"<<std::endl;
         std::getline(std::cin, target);
         std::string replacement;
-        std::cout<<"Inserire la stringa con cui sostituirla"<<std::endl;
+        std::cout<<"Inserire la parte di testo con cui sostituirla"<<std::endl;
         std::getline(std::cin, replacement);
 
         std::vector<std::string> lines;
@@ -108,7 +108,7 @@ void Note::modifyNote(const std::string &name) {
             std::cerr << "Errore nell'apertura del file " << fileName << std::endl;
         }
 
-        std::cout << "La stringa è stata modificata con successo." << std::endl;
+        std::cout << "La nota è stata modificata con successo." << std::endl;
     } else
         std::cout<<"Nota bloccata! Impossibile modificarla!"<<std::endl;
 }

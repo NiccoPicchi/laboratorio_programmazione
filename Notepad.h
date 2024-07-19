@@ -20,6 +20,8 @@ private:
     std::list<Observer*> observers;
 
 public:
+    void lockNote (const std::string& collectionTitle, const std::string& noteTitle);
+    void unlockNote (const std::string& collectionTitle, const std::string& noteTitle);
     void deleteCollection (const std::string& collectionTitle);
     void setCollectionTitle (const std::string& collectionTitle);
     void showNote (const std::string& collectionTitle, const std::string& noteTitle);
