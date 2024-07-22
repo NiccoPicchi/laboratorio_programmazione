@@ -10,8 +10,6 @@ TEST(Notepad, createNote) {
 }
 
 
-
-
 TEST(Notepad, removeNote){
     Notepad notepad;
     std::string collectionTitle = "note a caso";

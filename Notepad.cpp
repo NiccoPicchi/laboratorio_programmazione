@@ -34,8 +34,10 @@ void Notepad::removeNote(const std::string &collectionTitle, const std::string& 
                 notify();
                 break;
             }
-            else
-                std::cout<<"Nota bloccata! Impossibile eliminarla"<<std::endl;
+            else {
+                std::cout << "Nota bloccata! Impossibile eliminarla" << std::endl;
+                break;
+            }
         }
         else
             std::cout << "Impossibile eliminare la nota! Nota non trovata!" << std::endl;
@@ -68,8 +70,10 @@ void Notepad::modifyNote(const std::string& collectionTitle, const std::string& 
                 found = true;
                 std::cout<<"Nota modificata con successo!"<<std::endl;
             }
-            else
+            else {
                 std::cout<<"Nota bloccata! Impossibile modificarla"<<std::endl;
+                found = true;
+            }
         }
     }
 
