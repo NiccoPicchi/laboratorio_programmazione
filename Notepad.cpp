@@ -19,7 +19,7 @@ void Notepad::showNote(const std::string &collectionTitle, const std::string& no
     for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
         if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
             std::cout<<"Mostrando la nota dalla collezione:"<< collectionTitle <<std::endl;
-            (notepad[collectionTitle])[i]->displayNote((notepad[collectionTitle])[i]->getFileName());
+            (notepad[collectionTitle])[i]->displayNote();
             found = true;
         }
     }
@@ -43,16 +43,9 @@ void Notepad::removeNote(const std::string &collectionTitle, const std::string& 
             std::cout << "Impossibile eliminare la nota! Nota non trovata!" << std::endl;
 }
 
-void Notepad::createNote(const std::string& collectionTitle) {
+void Notepad::createNote(const std::string &collectionTitle, const std::string &text, const std::string &title) {
     if (notepad.find(collectionTitle) != notepad.end()){
-        std::string noteTitle;
-        std::cout<<"Inserire il titolo della nota"<<std::endl;
-        std::getline(std::cin, noteTitle);
-        std::string fileName;
-        std::cout<<"Inserire il nome del file"<<std::endl;
-        std::getline(std::cin, fileName);
-        notepad[collectionTitle].push_back(new Note(noteTitle, fileName));
-        notepad[collectionTitle][notepad[collectionTitle].size()-1]->writeOnNote(fileName);
+        notepad[collectionTitle].push_back(new Note(title, text));
         notify();
 
     }
@@ -60,13 +53,13 @@ void Notepad::createNote(const std::string& collectionTitle) {
         std::cout<<"Impossibile trovare la collezione di note"<<std::endl;
 }
 
-void Notepad::modifyNote(const std::string& collectionTitle, const std::string& noteTitle) {
+void Notepad::modifyNote(const std::string &collectionTitle, const std::string &title, const std::string &text) {
     bool found = false;
     for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
-        if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
+        if ((notepad[collectionTitle])[i]->getTitle() == title) {
             if (notepad[collectionTitle][i]->isBlocked()== false){
                 std::cout<<"Modificando la nota dalla collezione:"<< collectionTitle <<std::endl;
-                (notepad[collectionTitle])[i]->modifyNote((notepad[collectionTitle])[i]->getFileName());
+                (notepad[collectionTitle])[i]->modifyNote(text);
                 found = true;
                 std::cout<<"Nota modificata con successo!"<<std::endl;
             }
@@ -176,7 +169,7 @@ void Notepad::removeFromImportant(const std::string &collectionTitle, const std:
     }
 }
 
-int Notepad::getEmailInACollection(const std::string &collectionTitle) {
+int Notepad::getNotesInACollection(const std::string &collectionTitle) {
     return notepad[collectionTitle].capacity();
 }
 

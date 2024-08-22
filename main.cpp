@@ -40,7 +40,11 @@ int main() {
             cin.ignore();
             std::cout<<"Inserire il nome della collezione in cui si vuole inserire la nota:"<<std::endl;
             string collectionTitle = setName();
-            notepad.createNote(collectionTitle);
+            std::cout<<"Inserire il titolo della nuova nota"<<std::endl;
+            string noteTitle = setName();
+            std::cout<<"Inserire il testo della nuova nota"<<std::endl;
+            string noteText = setName();
+            notepad.createNote(collectionTitle, noteText, noteTitle);
         }
 
         if (option == 3){
@@ -49,7 +53,9 @@ int main() {
             string collectionTitle = setName();
             cout<<"Inserire il titolo della nota da modificare"<<endl;
             string noteTitle = setName();
-            notepad.modifyNote(collectionTitle, noteTitle);
+            std::cout<<"Inserire il testo modificato"<<std::endl;
+            string newText = setName();
+            notepad.modifyNote(collectionTitle, noteTitle, newText);
         }
         if (option==4){
             cin.ignore();

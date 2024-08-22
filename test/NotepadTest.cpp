@@ -5,8 +5,8 @@ TEST(Notepad, createNote) {
     Notepad notepad;
     std::string collectionTitle = "note a caso";
     notepad.setCollectionTitle(collectionTitle);
-    notepad.createNote(collectionTitle);
-    ASSERT_EQ(notepad.getEmailInACollection(collectionTitle), 1);
+    notepad.createNote(collectionTitle, <#initializer#>, <#initializer#>);
+    ASSERT_EQ(notepad.getNotesInACollection(collectionTitle), 1);
 }
 
 
@@ -14,9 +14,9 @@ TEST(Notepad, removeNote){
     Notepad notepad;
     std::string collectionTitle = "note a caso";
     notepad.setCollectionTitle(collectionTitle);
-    notepad.createNote(collectionTitle);
+    notepad.createNote(collectionTitle, <#initializer#>, <#initializer#>);
     notepad.removeNote(collectionTitle, "titolo");
-    ASSERT_EQ(notepad.getEmailInACollection(collectionTitle), 0);
+    ASSERT_EQ(notepad.getNotesInACollection(collectionTitle), 0);
 }
 
 TEST(Notepad, setCollection){

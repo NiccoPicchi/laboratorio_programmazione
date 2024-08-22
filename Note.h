@@ -13,21 +13,18 @@ class Note {
 private:
     std::string title;
     bool blocked;
-    std::fstream text;
+    std::string text;
     bool important;
-    std::string fileName;
 public:
-    Note(const std::string &title,const std::string &fileName, bool blocked= false, bool important= false );
+    Note(const std::string &title , const std::string &text, bool blocked = false, bool important = false);
 
-    void displayNote (const std::string& name);
+    void displayNote();
     // Note* createNote ();
-    void writeOnNote (const std::string& name);
+    void writeOnNote(const std::string &newText);
 
     void setBlocked(bool blocked);
 
     bool isBlocked() const;
-
-    const std::string &getFileName() const;
 
     void setTitle(const std::string &title);
 
@@ -37,7 +34,7 @@ public:
 
     void setImportant(bool important);
 
-    void modifyNote(const std::string &name);
+    void modifyNote(const std::string &newText);
 };
 
 

@@ -9,20 +9,10 @@
 #include "Note.h"
 
 
-void Note::displayNote(const std::string& name) {
+void Note::displayNote() {
     std::cout<<"Showing the note..."<<std::endl;
     std::cout<<"Title: "<< title<<std::endl;
-    std::cout<<"Testo: "<<std::endl;
-    text.open(name);
-    std::string line;
-    while (std::getline(text, line)){
-        if (text.is_open())
-            std::cout<<line<<std::endl;
-        else
-            std::cout<<"Impossibile leggere la nota"<<std::endl;
-    }
-    text.close();
-
+    std::cout<<"Testo: "<< text<<std::endl;
 }
 
 /*Note* Note::createNote() {
@@ -44,18 +34,9 @@ void Note::displayNote(const std::string& name) {
 }
  */
 
-void Note::writeOnNote(const std::string& name) {
+void Note::writeOnNote(const std::string &newText) {
     if (!blocked){
-        text.open(name, std::ios_base::app );
-        if(!text)
-            std::cerr<<"Errore nell'apertura del file"<<std::endl;
-        else{
-            std::string input;
-            std::cout << "Inserisci il testo: "<<std::endl;
-            std::getline(std::cin, input);
-            text<< input<<std::endl;
-            text.close();
-        }
+        text = newText;
     }
     else
         std::cout<<"Nota bloccata! Impossibile modificarla!"<<std::endl;
@@ -69,45 +50,9 @@ void Note::setImportant(bool important) {
     Note::important = important;
 }
 
-void Note::modifyNote(const std::string &name) {
+void Note::modifyNote(const std::string &newText) {
     if (!blocked){
-        std::string target;
-        std::cout<<"Inserire la parte di testo da modificare"<<std::endl;
-        std::getline(std::cin, target);
-        std::string replacement;
-        std::cout<<"Inserire la parte di testo con cui sostituirla"<<std::endl;
-        std::getline(std::cin, replacement);
-
-        std::vector<std::string> lines;
-        std::string line;
-
-        text.open(name);
-        if (text.is_open()) {
-            while (std::getline(text, line)) {
-                lines.push_back(line);
-            }
-            text.close();
-        } else {
-            std::cerr << "Errore nell'apertura del file " << fileName << std::endl;
-        }
-
-        for (auto &line : lines) {
-            size_t pos = line.find(target);
-            if (pos != std::string::npos) {
-                line.replace(pos, target.length(), replacement);
-            }
-        }
-
-        text.open(name);
-        if (text.is_open()) {
-            for (const auto &line : lines) {
-                text << line << std::endl;
-            }
-            text.close();
-        } else {
-            std::cerr << "Errore nell'apertura del file " << fileName << std::endl;
-        }
-
+        text = newText;
         std::cout << "La nota è stata modificata con successo." << std::endl;
     } else
         std::cout<<"Nota bloccata! Impossibile modificarla!"<<std::endl;
@@ -121,16 +66,9 @@ void Note::setTitle(const std::string &title) {
     Note::title = title;
 }
 
-Note::Note(const std::string &title, const std::string &fileName, bool blocked, bool important) : title(title),
-                                                                                                  blocked(blocked),
-                                                                                                  important(important),
-                                                                                                  fileName(fileName) {
-    text = std::fstream (fileName);
-}
+Note::Note(const std::string &title, const std::string& text, bool blocked, bool important)
+        : title(title), text(text), blocked(blocked), important(important){}
 
-const std::string &Note::getFileName() const {
-    return fileName;
-}
 
 bool Note::isBlocked() const {
     return blocked;

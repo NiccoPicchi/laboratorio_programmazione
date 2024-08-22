@@ -28,15 +28,15 @@ public:
     void setCollectionTitle (const std::string& collectionTitle);
     void showNote (const std::string& collectionTitle, const std::string& noteTitle);
     void removeNote (const std::string& collectionTitle, const std::string& noteTitle);
-    void createNote (const std::string& collectionTitle);
-    void modifyNote (const std::string& collectionTitle, const std::string& noteTitle);
+    void createNote(const std::string &collectionTitle, const std::string &text, const std::string &title);
+    void modifyNote(const std::string &collectionTitle, const std::string &title, const std::string &text);
     std::vector<int> getEmailNumber();
     int getCollectionNumber ();
     std::vector<std::string> getCollectionTitle();
     void subscribe(Observer *o) override;
     void unsubscribe(Observer *o) override;
     void notify() override;
-    int getEmailInACollection (const std::string& collectionTitle);
+    int getNotesInACollection (const std::string& collectionTitle);
 };
 
 
