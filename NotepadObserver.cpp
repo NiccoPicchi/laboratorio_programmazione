@@ -7,7 +7,7 @@
 
 void NotepadObserver::update() {
     collectionTitles = subject->getCollectionTitle();
-    noteNumberInCollection = subject->getEmailNumber();
+    noteNumberInCollection = subject->getNotesNumber();
     displayInfo();
 }
 

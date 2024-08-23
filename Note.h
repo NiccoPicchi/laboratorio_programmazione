@@ -35,6 +35,8 @@ public:
     void setImportant(bool important);
 
     void modifyNote(const std::string &newText);
+
+    const std::string &getText() const;
 };
 
 

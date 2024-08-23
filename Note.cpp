@@ -77,3 +77,7 @@ bool Note::isBlocked() const {
 bool Note::isImportant() const {
     return important;
 }
+
+const std::string &Note::getText() const {
+    return text;
+}

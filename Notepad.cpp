@@ -43,9 +43,9 @@ void Notepad::removeNote(const std::string &collectionTitle, const std::string& 
             std::cout << "Impossibile eliminare la nota! Nota non trovata!" << std::endl;
 }
 
-void Notepad::createNote(const std::string &collectionTitle, const std::string &text, const std::string &title) {
+void Notepad::createNote(const std::string &collectionTitle, const std::string &noteText, const std::string &noteTitle) {
     if (notepad.find(collectionTitle) != notepad.end()){
-        notepad[collectionTitle].push_back(new Note(title, text));
+        notepad[collectionTitle].push_back(new Note(noteTitle, noteText));
         notify();
 
     }
@@ -53,13 +53,13 @@ void Notepad::createNote(const std::string &collectionTitle, const std::string &
         std::cout<<"Impossibile trovare la collezione di note"<<std::endl;
 }
 
-void Notepad::modifyNote(const std::string &collectionTitle, const std::string &title, const std::string &text) {
+void Notepad::modifyNote(const std::string &collectionTitle, const std::string &noteTitle, const std::string &noteText) {
     bool found = false;
     for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
-        if ((notepad[collectionTitle])[i]->getTitle() == title) {
+        if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
             if (notepad[collectionTitle][i]->isBlocked()== false){
                 std::cout<<"Modificando la nota dalla collezione:"<< collectionTitle <<std::endl;
-                (notepad[collectionTitle])[i]->modifyNote(text);
+                (notepad[collectionTitle])[i]->modifyNote(noteText);
                 found = true;
                 std::cout<<"Nota modificata con successo!"<<std::endl;
             }
@@ -73,7 +73,7 @@ void Notepad::modifyNote(const std::string &collectionTitle, const std::string &
 }
 
 
-std::vector<int> Notepad::getEmailNumber() {
+std::vector<int> Notepad::getNotesNumber() {
     std::vector<int> noteInCollection;
     noteInCollection.clear();
     for (const auto& element: notepad)
@@ -139,7 +139,7 @@ void Notepad::unlockNote(const std::string &collectionTitle, const std::string &
     }
 }
 
-void Notepad::putInImportant(const std::string &collectionTitle, const std::string &noteTitle) {
+void Notepad::setNoteImportant(const std::string &collectionTitle, const std::string &noteTitle) {
     bool found = false;
     for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
         if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
@@ -152,7 +152,7 @@ void Notepad::putInImportant(const std::string &collectionTitle, const std::stri
     }
 }
 
-void Notepad::removeFromImportant(const std::string &collectionTitle, const std::string &noteTitle) {
+void Notepad::unsetNoteImportant(const std::string &collectionTitle, const std::string &noteTitle) {
     bool found = false;
     for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
         if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
@@ -170,6 +170,6 @@ void Notepad::removeFromImportant(const std::string &collectionTitle, const std:
 }
 
 int Notepad::getNotesInACollection(const std::string &collectionTitle) {
-    return notepad[collectionTitle].capacity();
+    return notepad[collectionTitle].size();
 }
 

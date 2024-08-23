@@ -101,7 +101,7 @@ int main() {
             string collectionTitle = setName();
             cout<<"Inserire il titolo della nota da impostare come importante"<<endl;
             string noteTitle = setName();
-            notepad.putInImportant(collectionTitle, noteTitle);
+            notepad.setNoteImportant(collectionTitle, noteTitle);
         }
         if (option == 10){
             cin.ignore();
@@ -109,7 +109,7 @@ int main() {
             string collectionTitle = setName();
             cout<<"Inserire il titolo della nota da rimuovere da importante"<<endl;
             string noteTitle = setName();
-            notepad.removeFromImportant(collectionTitle, noteTitle);
+            notepad.unsetNoteImportant(collectionTitle, noteTitle);
         }
     }
 

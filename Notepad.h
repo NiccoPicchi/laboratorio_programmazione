@@ -20,17 +20,17 @@ private:
     std::list<Observer*> observers;
 
 public:
-    void removeFromImportant (const std::string& collectionTitle, const std::string& noteTitle);
-    void putInImportant (const std::string& collectionTitle, const std::string& noteTitle);
+    void unsetNoteImportant (const std::string& collectionTitle, const std::string& noteTitle);
+    void setNoteImportant (const std::string& collectionTitle, const std::string& noteTitle);
     void lockNote (const std::string& collectionTitle, const std::string& noteTitle);
     void unlockNote (const std::string& collectionTitle, const std::string& noteTitle);
     void deleteCollection (const std::string& collectionTitle);
     void setCollectionTitle (const std::string& collectionTitle);
     void showNote (const std::string& collectionTitle, const std::string& noteTitle);
     void removeNote (const std::string& collectionTitle, const std::string& noteTitle);
-    void createNote(const std::string &collectionTitle, const std::string &text, const std::string &title);
-    void modifyNote(const std::string &collectionTitle, const std::string &title, const std::string &text);
-    std::vector<int> getEmailNumber();
+    void createNote(const std::string &collectionTitle, const std::string &noteText, const std::string &noteTitle);
+    void modifyNote(const std::string &collectionTitle, const std::string &noteTitle, const std::string &noteText);
+    std::vector<int> getNotesNumber();
     int getCollectionNumber ();
     std::vector<std::string> getCollectionTitle();
     void subscribe(Observer *o) override;
