@@ -15,9 +15,9 @@ int main() {
     Notepad notepad;
     notepad.setCollectionTitle("Note importanti");
     NotepadObserver observer(&notepad);
-    int numOptions = 11;
+    int numOptions = 12;
     cout<<"Benvenuto nel blocco note!"<<endl;
-    cout<<"Cosa desideri fare:"<<"\n"<< "1)Creare una nuova collezione      2)Creare una nuova nota       3)Modificare una nota       4)Leggere una nota      5)Eliminare una nota      6)Eliminare una collezione      7)Bloccare una nota     8)Sbloccare una nota        9)Imposta una nota come importante      10)Rimuovi una nota da importanti       11)Uscire "<<endl;
+    cout<<"Cosa desideri fare:"<<"\n"<< "1)Creare una nuova collezione      2)Creare una nuova nota       3)Modificare una nota       4)Leggere una nota      5)Eliminare una nota      6)Eliminare una collezione      7)Bloccare una nota     8)Sbloccare una nota        9)Imposta una nota come importante      10)Rimuovi una nota da importanti       11)Modificare il titolo di una nota       12)Uscire "<<endl;
     int option=0;
     while (option != numOptions) {
         cout<< "Digitare il numero corrispondente all'azione desiderata" <<endl;
@@ -55,7 +55,7 @@ int main() {
             string noteTitle = setName();
             std::cout<<"Inserire il testo modificato"<<std::endl;
             string newText = setName();
-            notepad.modifyNote(collectionTitle, noteTitle, newText);
+            notepad.modifyNoteText(collectionTitle, noteTitle, newText);
         }
         if (option==4){
             cin.ignore();
@@ -111,9 +111,20 @@ int main() {
             string noteTitle = setName();
             notepad.unsetNoteImportant(collectionTitle, noteTitle);
         }
+        if (option == 11){
+            cin.ignore();
+            cout<<"Inserire il nome della collezione in cui è presente la nota da modificare"<<endl;
+            string collectionTitle = setName();
+            cout<<"Inserire il titolo della nota da modificare"<<endl;
+            string noteTitle = setName();
+            cout<<"Inserire il nuovo titolo"<<endl;
+            string newTitle = setName();
+            notepad.modifyNoteTitle(collectionTitle, noteTitle, newTitle);
+        }
     }
 
-    if (option == 11)
+    if (option == 12)
+        cout<<"Arrivederci"<<endl;
         return 0;
 
 }

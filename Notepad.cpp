@@ -3,11 +3,12 @@
 //
 
 #include <iostream>
+#include <memory>
 #include "Notepad.h"
 
 void Notepad::setCollectionTitle(const std::string& collectionTitle) {
     if(notepad.find(collectionTitle) == notepad.end())
-        notepad[collectionTitle]=std::vector<Note*>();
+        notepad[collectionTitle]=std::vector<std::shared_ptr<Note>>();
     else
         std::cout<<"è già presente una collezione di note con questo nome"<<std::endl;
 
@@ -45,7 +46,7 @@ void Notepad::removeNote(const std::string &collectionTitle, const std::string& 
 
 void Notepad::createNote(const std::string &collectionTitle, const std::string &noteText, const std::string &noteTitle) {
     if (notepad.find(collectionTitle) != notepad.end()){
-        notepad[collectionTitle].push_back(new Note(noteTitle, noteText));
+        notepad[collectionTitle].push_back(std::make_shared<Note>(noteTitle, noteText));
         notify();
 
     }
@@ -53,7 +54,7 @@ void Notepad::createNote(const std::string &collectionTitle, const std::string &
         std::cout<<"Impossibile trovare la collezione di note"<<std::endl;
 }
 
-void Notepad::modifyNote(const std::string &collectionTitle, const std::string &noteTitle, const std::string &noteText) {
+void Notepad::modifyNoteText(const std::string &collectionTitle, const std::string &noteTitle, const std::string &noteText) {
     bool found = false;
     for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
         if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
@@ -171,5 +172,25 @@ void Notepad::unsetNoteImportant(const std::string &collectionTitle, const std::
 
 int Notepad::getNotesInACollection(const std::string &collectionTitle) {
     return notepad[collectionTitle].size();
+}
+
+void Notepad::modifyNoteTitle(const std::string &collectionTitle, const std::string &noteTitle,
+                              const std::string &newTitle) {
+    bool found = false;
+    for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
+        if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
+            if (notepad[collectionTitle][i]->isBlocked()== false){
+                std::cout<<"Modificando il titolo della nota dalla collezione:"<< collectionTitle <<std::endl;
+                (notepad[collectionTitle])[i]->setTitle(newTitle);
+                found = true;
+                std::cout<<"Nota modificata con successo!"<<std::endl;
+            }
+            else {
+                std::cout<<"Nota bloccata! Impossibile modificarla"<<std::endl;
+                found = true;
+            }
+        }
+    }
+
 }
 

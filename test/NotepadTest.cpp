@@ -34,6 +34,15 @@ TEST(Notepad, removeNote){
     ASSERT_EQ(notepad.getNotesInACollection(collectionTitle), 0);
 }
 
+TEST(Notepad, modifyNoteText) {
+    Notepad notepad;
+    std::string collectionTitle = "note";
+    notepad.setCollectionTitle(collectionTitle);
+    notepad.createNote(collectionTitle, "testo", "titolo");
+    notepad.modifyNoteText(collectionTitle, "titolo", "nuovo testo" );
+    ASSERT_EQ();
+}
+
 TEST(Notepad, setCollection){
     Notepad notepad;
     notepad.setCollectionTitle("collezione");

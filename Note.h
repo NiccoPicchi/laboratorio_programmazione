@@ -19,8 +19,6 @@ public:
     Note(const std::string &title , const std::string &text, bool blocked = false, bool important = false);
 
     void displayNote();
-    // Note* createNote ();
-    void writeOnNote(const std::string &newText);
 
     void setBlocked(bool blocked);
 

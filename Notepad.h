@@ -16,7 +16,7 @@
 
 class Notepad: public Subject{
 private:
-    std::map<std::string, std::vector<Note*>> notepad;
+    std::map<std::string, std::vector<std::shared_ptr<Note>>> notepad;
     std::list<Observer*> observers;
 
 public:
@@ -29,7 +29,8 @@ public:
     void showNote (const std::string& collectionTitle, const std::string& noteTitle);
     void removeNote (const std::string& collectionTitle, const std::string& noteTitle);
     void createNote(const std::string &collectionTitle, const std::string &noteText, const std::string &noteTitle);
-    void modifyNote(const std::string &collectionTitle, const std::string &noteTitle, const std::string &noteText);
+    void modifyNoteText(const std::string &collectionTitle, const std::string &noteTitle, const std::string &noteText);
+    void modifyNoteTitle(const std::string &collectionTitle, const std::string &noteTitle, const std::string &newTitle);
     std::vector<int> getNotesNumber();
     int getCollectionNumber ();
     std::vector<std::string> getCollectionTitle();

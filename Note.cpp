@@ -15,33 +15,6 @@ void Note::displayNote() {
     std::cout<<"Testo: "<< text<<std::endl;
 }
 
-/*Note* Note::createNote() {
-    std::string titolo;
-    std::cout<<"Inserire il titolo della nota"<<std::endl;
-    std::cin>>titolo;
-    setTitle(titolo);
-    text = std::fstream ();
-    if (!text)
-        std::cerr<<"Errore nell'apertura del file"<<std::endl;
-    else {
-        std::cout<<"Scrivere il testo da inserire nella nota"<<std::endl;
-        std::string newString;
-        std::cin>>newString;
-        text <<newString;
-        text.close();
-    }
-    return this;
-}
- */
-
-void Note::writeOnNote(const std::string &newText) {
-    if (!blocked){
-        text = newText;
-    }
-    else
-        std::cout<<"Nota bloccata! Impossibile modificarla!"<<std::endl;
-}
-
 void Note::setBlocked(bool blocked) {
     Note::blocked = blocked;
 }
