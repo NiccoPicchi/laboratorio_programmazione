@@ -146,7 +146,7 @@ void Notepad::setNoteImportant(const std::string &collectionTitle, const std::st
         if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
             (notepad[collectionTitle])[i]->setImportant(true);
             std::cout<<"Hai impostato la nota come importante!" <<std::endl;
-            notepad["Note importanti"].push_back((notepad[collectionTitle])[i]);
+            notepad["Note importanti"].emplace_back((notepad[collectionTitle])[i]);
             notify();
             found = true;
         }
@@ -194,3 +194,11 @@ void Notepad::modifyNoteTitle(const std::string &collectionTitle, const std::str
 
 }
 
+const Note &Notepad::getNote(const std::string& collectionTitle, const std::string& noteTitle) {
+    bool found = false;
+    for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
+        if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
+            return *(notepad[collectionTitle][i]);
+        }
+    }
+}

@@ -40,7 +40,18 @@ TEST(Notepad, modifyNoteText) {
     notepad.setCollectionTitle(collectionTitle);
     notepad.createNote(collectionTitle, "testo", "titolo");
     notepad.modifyNoteText(collectionTitle, "titolo", "nuovo testo" );
-    ASSERT_EQ();
+    auto nota = notepad.getNote(collectionTitle, "titolo");
+    ASSERT_EQ(nota.getText(), "nuovo testo");
+}
+
+TEST(Notepad, modifyNoteTitle){
+    Notepad notepad;
+    std::string collectionTitle = "note";
+    notepad.setCollectionTitle(collectionTitle);
+    notepad.createNote(collectionTitle, "testo", "titolo");
+    notepad.modifyNoteTitle(collectionTitle, "titolo", "nuovo titolo" );
+    auto nota = notepad.getNote(collectionTitle, "nuovo titolo");
+    ASSERT_EQ(nota.getTitle(), "nuovo titolo");
 }
 
 TEST(Notepad, setCollection){
@@ -54,4 +65,47 @@ TEST(Notepad, removeCollection){
     notepad.setCollectionTitle("collezione");
     notepad.deleteCollection("collezione");
     ASSERT_EQ(notepad.getCollectionNumber(), 0);
+}
+
+TEST(Notepad, lockNote){
+    Notepad notepad;
+    std::string collectionTitle = "note";
+    notepad.setCollectionTitle(collectionTitle);
+    notepad.createNote(collectionTitle, "testo", "titolo");
+    notepad.lockNote(collectionTitle, "titolo");
+    auto nota = notepad.getNote(collectionTitle, "titolo");
+    ASSERT_EQ(nota.isBlocked(), true);
+}
+
+TEST(Notepad, unlockNote){
+    Notepad notepad;
+    std::string collectionTitle = "note";
+    notepad.setCollectionTitle(collectionTitle);
+    notepad.createNote(collectionTitle, "testo", "titolo");
+    notepad.unlockNote(collectionTitle, "titolo");
+    auto nota = notepad.getNote(collectionTitle, "titolo");
+    ASSERT_EQ(nota.isBlocked(), false);
+}
+
+TEST(Notepad, setNoteImportant) {
+    Notepad notepad;
+    notepad.setCollectionTitle("Note importanti");
+    notepad.setCollectionTitle("note");
+    notepad.createNote("note", "testo", "titolo");
+    notepad.setNoteImportant("note", "titolo");
+    auto nota = notepad.getNote("note", "titolo");
+    ASSERT_EQ(nota.isImportant(), true);
+    ASSERT_EQ(notepad.getNotesInACollection("Note importanti"), 1);
+}
+
+TEST(Notepad, unsetNoteImportant) {
+    Notepad notepad;
+    notepad.setCollectionTitle("Note importanti");
+    notepad.setCollectionTitle("note");
+    notepad.createNote("note", "testo", "titolo");
+    notepad.setNoteImportant("note", "titolo");
+    notepad.unsetNoteImportant("note", "titolo");
+    auto nota = notepad.getNote("note", "titolo");
+    ASSERT_EQ(nota.isImportant(), false);
+    ASSERT_EQ(notepad.getNotesInACollection("Note importanti"), 0);
 }

@@ -38,6 +38,8 @@ public:
     void unsubscribe(Observer *o) override;
     void notify() override;
     int getNotesInACollection (const std::string& collectionTitle);
+    const Note& getNote (const std::string& collectionTitle, const std::string& noteTitle);
+
 };
 
 
