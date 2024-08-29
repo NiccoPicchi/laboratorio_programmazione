@@ -202,3 +202,14 @@ const Note &Notepad::getNote(const std::string& collectionTitle, const std::stri
         }
     }
 }
+
+bool Notepad::findNote(const std::string &collectionTitle, const std::string &noteTitle) {
+    bool found = false;
+    for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
+        if (notepad[collectionTitle][i]->getTitle() == noteTitle){
+            found = true;
+            std::cout<<"Nota trovata"<<std::endl;
+        }
+    }
+    return found;
+}

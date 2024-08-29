@@ -15,7 +15,7 @@ int main() {
     Notepad notepad;
     notepad.setCollectionTitle("Note importanti");
     NotepadObserver observer(&notepad);
-    int numOptions = 12;
+    int numOptions = 13;
     cout<<"Benvenuto nel blocco note!"<<endl;
     cout<<"Cosa desideri fare:"<<"\n"<< "1)Creare una nuova collezione      2)Creare una nuova nota       3)Modificare una nota       4)Leggere una nota      5)Eliminare una nota      6)Eliminare una collezione      7)Bloccare una nota     8)Sbloccare una nota        9)Imposta una nota come importante      10)Rimuovi una nota da importanti       11)Modificare il titolo di una nota       12)Uscire "<<endl;
     int option=0;
@@ -121,10 +121,19 @@ int main() {
             string newTitle = setName();
             notepad.modifyNoteTitle(collectionTitle, noteTitle, newTitle);
         }
+        if (option == 12){
+            cin.ignore();
+            cout<<"Inserire il nome della collezione in cui è presente la nota da trovare"<<endl;
+            string collectionTitle = setName();
+            cout<<"Inserire il titolo della nota da trovare"<<endl;
+            string noteTitle = setName();
+            notepad.findNote(collectionTitle, noteTitle);
+        }
+
     }
 
-    if (option == 12)
+    if (option == 13)
         cout<<"Arrivederci"<<endl;
-        return 0;
+    return 0;
 
 }

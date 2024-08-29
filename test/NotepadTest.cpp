@@ -109,3 +109,11 @@ TEST(Notepad, unsetNoteImportant) {
     ASSERT_EQ(nota.isImportant(), false);
     ASSERT_EQ(notepad.getNotesInACollection("Note importanti"), 0);
 }
+
+TEST(Notepad, findNote){
+    Notepad notepad;
+    notepad.setCollectionTitle("note");
+    notepad.createNote("note", "testo", "titolo");
+    bool found = notepad.findNote("note", "titolo");
+    ASSERT_EQ(found, true);
+}
