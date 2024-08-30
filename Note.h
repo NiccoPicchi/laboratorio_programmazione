@@ -18,6 +18,8 @@ private:
 public:
     Note(const std::string &title , const std::string &text, bool blocked = false, bool important = false);
 
+    Note(const std::string &title = " ", bool blocked = false, const std::string &text = " ", bool important = false);
+
     void displayNote();
 
     void setBlocked(bool blocked);

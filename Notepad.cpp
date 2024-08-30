@@ -195,21 +195,28 @@ void Notepad::modifyNoteTitle(const std::string &collectionTitle, const std::str
 }
 
 const Note &Notepad::getNote(const std::string& collectionTitle, const std::string& noteTitle) {
-    bool found = false;
-    for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
+    for (int i = 0; i < notepad[collectionTitle].capacity(); ++i) {
         if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
             return *(notepad[collectionTitle][i]);
         }
     }
+    std::cout<<"Nota non trovata"<<std::endl;
+    return *(std::make_shared<Note>());
 }
 
-bool Notepad::findNote(const std::string &collectionTitle, const std::string &noteTitle) {
-    bool found = false;
-    for (int i = 0; i < notepad[collectionTitle].capacity() || !found; ++i) {
-        if (notepad[collectionTitle][i]->getTitle() == noteTitle){
-            found = true;
-            std::cout<<"Nota trovata"<<std::endl;
+const Note &Notepad::findNote(const std::string &collectionTitle, const std::string &noteTitle) {
+    if (notepad.find(collectionTitle) != notepad.end()){
+        for (int i = 0; i < notepad[collectionTitle].capacity(); ++i) {
+            if ((notepad[collectionTitle])[i]->getTitle() == noteTitle) {
+                return *(notepad[collectionTitle][i]);
+            }
         }
+        std::cout<<"Nota non trovata!"<<std::endl;
+        return *(std::make_shared<Note>());
     }
-    return found;
+    else {
+        std::cout<<"Collezione non trovata!"<<std::endl;
+        return *(std::make_shared<Note>());
+    }
 }
+

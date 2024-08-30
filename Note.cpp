@@ -54,3 +54,5 @@ bool Note::isImportant() const {
 const std::string &Note::getText() const {
     return text;
 }
+
+Note::Note(const std::string &title, bool blocked, const std::string &text, bool important): title(title), blocked(blocked), text(text), important(important) {}

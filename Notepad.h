@@ -39,7 +39,7 @@ public:
     void notify() override;
     int getNotesInACollection (const std::string& collectionTitle);
     const Note& getNote (const std::string& collectionTitle, const std::string& noteTitle);
-    bool findNote (const std::string& collectionTitle, const std::string& noteTitle);
+    const Note& findNote (const std::string& collectionTitle, const std::string& noteTitle);
 
 };
 

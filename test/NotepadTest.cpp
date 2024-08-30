@@ -115,8 +115,18 @@ TEST(Notepad, findNote){
     Notepad notepad;
     notepad.setCollectionTitle("note");
     notepad.createNote("note", "testo", "titolo");
-    bool found = notepad.findNote("note", "titolo");
-    ASSERT_EQ(found, true);
+    auto nota = notepad.findNote("note", "titolo");
+    ASSERT_EQ(nota.getTitle(), "titolo");
+    ASSERT_EQ(nota.getText(), "testo");
+}
+
+TEST(Notepad, notFindNote){
+    Notepad notepad;
+    notepad.setCollectionTitle("note");
+    notepad.createNote("note", "testo", "titolo");
+    auto nota = notepad.findNote("note", "altro titolo");
+    ASSERT_EQ(nota.getTitle(), " ");
+    ASSERT_EQ(nota.getText(), " ");
 }
 
 TEST(Notepad, lockedNoteText){
