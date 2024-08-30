@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "../Notepad.h"
+#include "../NotepadObserver.h"
 
 TEST(Note, constructor) {
     Note nota("titolo", "testo");
@@ -116,4 +117,44 @@ TEST(Notepad, findNote){
     notepad.createNote("note", "testo", "titolo");
     bool found = notepad.findNote("note", "titolo");
     ASSERT_EQ(found, true);
+}
+
+TEST(Notepad, lockedNoteText){
+    Notepad notepad;
+    notepad.setCollectionTitle("note");
+    notepad.createNote("note", "testo", "titolo");
+    notepad.lockNote("note", "titolo");
+    notepad.modifyNoteText("note", "titolo", "nuovo testo");
+    auto nota = notepad.getNote("note", "titolo");
+    ASSERT_EQ(nota.getText(), "testo");
+}
+
+TEST(Notepad, lockedNoteTitle){
+    Notepad notepad;
+    notepad.setCollectionTitle("note");
+    notepad.createNote("note", "testo", "titolo");
+    notepad.lockNote("note", "titolo");
+    notepad.modifyNoteTitle("note", "titolo", "nuovo titolo");
+    auto nota = notepad.getNote("note", "titolo");
+    ASSERT_EQ(nota.getTitle(), "titolo");
+}
+
+TEST(Notepad, lockedNoteRemove){
+    Notepad notepad;
+    notepad.setCollectionTitle("note");
+    notepad.createNote("note", "testo", "titolo");
+    notepad.lockNote("note", "titolo");
+    notepad.removeNote("note", "titolo");
+    ASSERT_EQ(notepad.getNotesInACollection("note"), 1);
+}
+
+TEST(NotepadObserver, displayInfo){
+    testing::internal::CaptureStdout();
+    std::cout<<"My test: ";
+    Notepad notepad;
+    NotepadObserver observer(&notepad);
+    notepad.setCollectionTitle("note");
+    notepad.createNote("note", "testo", "titolo");
+    std::string output = testing::internal::GetCapturedStdout();
+    ASSERT_EQ(output, "My test: Nella collezione note ci sono 1 note\n");
 }
